@@ -16,117 +16,43 @@
 </div>
 
 <div class="container">
-    <div class="left">
-        <div class="data-table1">
-            <table>
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>Nama Siswa</th>
-                        <th>BI</th>
-                        <th>MTK</th>
-                        <th>IPA</th>
-                        <th>IPS</th>
-                        <th>PKN</th>
-                        <th>OR</th>
-                        <th>B.Ing</th>
-                        <th>PAI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Adi Wijaya</td>
-                        <td><input type="number" name="bi_1" /></td>
-                        <td><input type="number" name="mtk_1" /></td>
-                        <td><input type="number" name="ipa_1" /></td>
-                        <td><input type="number" name="ips_1" /></td>
-                        <td><input type="number" name="pkn_1" /></td>
-                        <td><input type="number" name="or_1" /></td>
-                        <td><input type="number" name="bing_1" /></td>
-                        <td><input type="number" name="pai_1" /></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Siti Nurhaliza</td>
-                        <td><input type="number" name="bi_2" /></td>
-                        <td><input type="number" name="mtk_2" /></td>
-                        <td><input type="number" name="ipa_2" /></td>
-                        <td><input type="number" name="ips_2" /></td>
-                        <td><input type="number" name="pkn_2" /></td>
-                        <td><input type="number" name="or_2" /></td>
-                        <td><input type="number" name="bing_2" /></td>
-                        <td><input type="number" name="pai_2" /></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Budi Santoso</td>
-                        <td><input type="number" name="bi_3" /></td>
-                        <td><input type="number" name="mtk_3" /></td>
-                        <td><input type="number" name="ipa_3" /></td>
-                        <td><input type="number" name="ips_3" /></td>
-                        <td><input type="number" name="pkn_3" /></td>
-                        <td><input type="number" name="or_3" /></td>
-                        <td><input type="number" name="bing_3" /></td>
-                        <td><input type="number" name="pai_3" /></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Lina Kartika</td>
-                        <td><input type="number" name="bi_4" /></td>
-                        <td><input type="number" name="mtk_4" /></td>
-                        <td><input type="number" name="ipa_4" /></td>
-                        <td><input type="number" name="ips_4" /></td>
-                        <td><input type="number" name="pkn_4" /></td>
-                        <td><input type="number" name="or_4" /></td>
-                        <td><input type="number" name="bing_4" /></td>
-                        <td><input type="number" name="pai_4" /></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Andi Prasetyo</td>
-                        <td><input type="number" name="bi_5" /></td>
-                        <td><input type="number" name="mtk_5" /></td>
-                        <td><input type="number" name="ipa_5" /></td>
-                        <td><input type="number" name="ips_5" /></td>
-                        <td><input type="number" name="pkn_5" /></td>
-                        <td><input type="number" name="or_5" /></td>
-                        <td><input type="number" name="bing_5" /></td>
-                        <td><input type="number" name="pai_5" /></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Ratna Sari</td>
-                        <td><input type="number" name="bi_6" /></td>
-                        <td><input type="number" name="mtk_6" /></td>
-                        <td><input type="number" name="ipa_6" /></td>
-                        <td><input type="number" name="ips_6" /></td>
-                        <td><input type="number" name="pkn_6" /></td>
-                        <td><input type="number" name="or_6" /></td>
-                        <td><input type="number" name="bing_6" /></td>
-                        <td><input type="number" name="pai_6" /></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Doni Ramadhan</td>
-                        <td><input type="number" name="bi_7" /></td>
-                        <td><input type="number" name="mtk_7" /></td>
-                        <td><input type="number" name="ipa_7" /></td>
-                        <td><input type="number" name="ips_7" /></td>
-                        <td><input type="number" name="pkn_7" /></td>
-                        <td><input type="number" name="or_7" /></td>
-                        <td><input type="number" name="bing_7" /></td>
-                        <td><input type="number" name="pai_7" /></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="simpan">
-                Simpan
+    <form method="POST" action="{{ url_for('input_nilai_route') }}">
+        <div class="left2">
+            <div class="data-table1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>Nama Siswa</th>
+                            <th>BI</th>
+                            <th>MTK</th>
+                            <th>IPA</th>
+                            <th>IPS</th>
+                            <th>PKN</th>
+                            <th>OR</th>
+                            <th>B.Ing</th>
+                            <th>PAI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for idx, siswa in enumerate(siswa_list, start=1) %}
+                        <tr>
+                            <td>{{ idx }}</td>
+                            <td>{{ siswa.nama }}</td>
+                            {% for mp in mata_pelajaran_list %}
+                                <td>
+                                    <input type="number" name="{{ mp.nama_pelajaran | lower }}_{{ siswa.id_siswa }}" 
+                                           value="{{ nilai_dict.get((siswa.id_siswa, mp.id_mata_pelajaran), '') }}" />
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="simpan">Simpan</button>
             </div>            
         </div>
-    </div>
-
-    
+    </form>
 
     <div class="content right">
         <div class="widget">
@@ -140,13 +66,10 @@
         <div class="widget">
             <div class="subwidget2">
                 <i class='bx bx-dice-3 chart2'></i>
-
             </div>
             <h1 class="header-data">4</h1>
             <p class="foot-data2">Total Siswa</p>
         </div>
     </div>
-
-
 </div>
 {% endblock %}

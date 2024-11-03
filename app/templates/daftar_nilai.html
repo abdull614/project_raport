@@ -34,90 +34,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% set no = 1 %}
+                    {% for nama, nilai_mapel in siswa_nilai.items() %}
                     <tr>
-                        <td>1</td>
-                        <td>Adi Wijaya</td>
-                        <td>78</td>
-                        <td>85</td>
-                        <td>90</td>
-                        <td>72</td>
-                        <td>88</td>
-                        <td>76</td>
-                        <td>91</td>
-                        <td>82</td>
+                        <td>{{ no }}</td>
+                        <td>{{ nama }}</td>
+                        <td>{{ nilai_mapel.get('Bahasa Indonesia', '-') }}</td>
+                        <td>{{ nilai_mapel.get('Matematika', '-') }}</td>
+                        <td>{{ nilai_mapel.get('IPA', '-') }}</td>
+                        <td>{{ nilai_mapel.get('IPS', '-') }}</td>
+                        <td>{{ nilai_mapel.get('PKN', '-') }}</td>
+                        <td>{{ nilai_mapel.get('Olahraga', '-') }}</td>
+                        <td>{{ nilai_mapel.get('Bahasa Inggris', '-') }}</td>
+                        <td>{{ nilai_mapel.get('Pendidikan Agama Islam', '-') }}</td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Siti Nurhaliza</td>
-                        <td>80</td>
-                        <td>74</td>
-                        <td>92</td>
-                        <td>81</td>
-                        <td>70</td>
-                        <td>75</td>
-                        <td>89</td>
-                        <td>88</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Budi Santoso</td>
-                        <td>90</td>
-                        <td>77</td>
-                        <td>85</td>
-                        <td>79</td>
-                        <td>95</td>
-                        <td>82</td>
-                        <td>84</td>
-                        <td>91</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Lina Kartika</td>
-                        <td>82</td>
-                        <td>88</td>
-                        <td>94</td>
-                        <td>76</td>
-                        <td>80</td>
-                        <td>90</td>
-                        <td>86</td>
-                        <td>87</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Andi Prasetyo</td>
-                        <td>79</td>
-                        <td>92</td>
-                        <td>75</td>
-                        <td>83</td>
-                        <td>84</td>
-                        <td>88</td>
-                        <td>73</td>
-                        <td>95</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Ratna Sari</td>
-                        <td>91</td>
-                        <td>80</td>
-                        <td>78</td>
-                        <td>77</td>
-                        <td>70</td>
-                        <td>86</td>
-                        <td>88</td>
-                        <td>90</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Doni Ramadhan</td>
-                        <td>87</td>
-                        <td>82</td>
-                        <td>91</td>
-                        <td>80</td>
-                        <td>84</td>
-                        <td>89</td>
-                        <td>95</td>
-                        <td>93</td>
-                    </tr>
+                    {% set no = no + 1 %}
+                    {% endfor %}
                 </tbody>
             </table>
             <div class="container3">
@@ -131,16 +63,14 @@
                 </select>
                 
                 <div class="input">
-                    <a href="{{ url_for('input') }}" class="btn btn-primary">
+                    <a href="{{ url_for('input_nilai') }}" class="btn btn-primary">
                         Input
                     </a>
                 </div>
-                
             </div>        
         </div>
     
         <script>
-            
             const dropdown = document.getElementById('kelasDropdown');
             dropdown.addEventListener('change', function() {
                 console.log('Kelas yang dipilih:', dropdown.value);

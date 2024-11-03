@@ -11,5 +11,7 @@ app.config.from_object(config)
 db= SQLAlchemy(app)
 migrate=Migrate(app, db)
 
+app.jinja_env.globals.update(enumerate=enumerate)
+
 from app.model import user, guru, kelas, siswa, mataPelajaran, nilai, laporan
 from app import routes

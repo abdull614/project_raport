@@ -350,7 +350,6 @@
 
   .container {
     display: flex;
-
     justify-content: space-between;
   }
 
@@ -360,8 +359,14 @@
     padding-bottom: 40px;
   }
 
+
+
   .left {
     width: 80%;
+  }
+
+  .left2 {
+    width: 100%;
   }
 
   .right {
