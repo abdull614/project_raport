@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Siswa - My Website{% endblock %}
+
+{% block content %}
+<div class="main-section">
+    <div class="bar">
+        <div class="inbar">
+            <div class="left-section">
+                <i class='bx bxs-building-house logo'></i>
+                <span class='sub'>SD NEGERI JUNGSEMI 1</span>
+            </div>
+            <span class="sub2">2024/2025</span>
+        </div>
+    </div>
+</div>
+
+<div class="container2">
+    <div class="flex-container"> <!-- Flex container untuk menata layout -->
+        <div class="left3">
+            <form class="edit-account-form" action="{{ url_for('tambah') }}" method="POST">
+                <label for="id_siswa">ID Siswa:</label>
+                <input type="text" id="id_siswa" name="id_siswa" required>
+                
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+            
+                <label for="nisn">NISN:</label>
+                <input type="text" id="nisn" name="nisn" required>
+            
+                <label for="tanggal-lahir">Tanggal Lahir:</label>
+                <input type="date" id="tanggal-lahir" name="tanggal-lahir" required>
+            
+                <label for="jenis-kelamin">Jenis Kelamin:</label>
+                <select id="jenis-kelamin" name="jenis-kelamin" required>
+                    <option value="">Pilih</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+                
+                <label for="tambah-kelas">Kelas:</label>
+                <select id="tambah-kelas" name="tambah-kelas" required>
+                    <option value="">Pilih</option>
+                    {% for kelas in kelas_list %}
+                        <option value="{{ kelas.id_kelas }}">{{ kelas.nama_kelas }}</option>  <!-- Sesuaikan dengan nama atribut di model Kelas -->
+                    {% endfor %}
+                </select>
+            
+                <label for="alamat">Alamat:</label>
+                <textarea id="alamat" name="alamat" rows="4" required></textarea>
+            
+                <button type="submit">Simpan</button>
+            </form>
+        </div>
+    </div> <!-- Tutup flex-container di sini -->
+</div>
+{% endblock %}

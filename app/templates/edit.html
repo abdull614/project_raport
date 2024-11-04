@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Siswa - My Website{% endblock %}
+
+{% block content %}
+<div class="main-section">
+    <div class="bar">
+        <div class="inbar">
+            <div class="left-section">
+                <i class='bx bxs-building-house logo'></i>
+                <span class='sub'>SD NEGERI JUNGSEMI 1</span>
+            </div>
+            <span class="sub2">2024/2025</span>
+        </div>
+    </div>
+</div>
+
+<div class="container2">
+    <div class="flex-container">
+        <div class="left3">
+            <form class="edit-account-form" method="POST">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" value="{{ siswa.nama }}" required>
+            
+                <label for="nisn">NISN:</label>
+                <input type="text" id="nisn" name="nisn" value="{{ siswa.nisn }}" required>
+            
+                <label for="tanggal-lahir">Tanggal Lahir:</label>
+                <input type="date" id="tanggal-lahir" name="tanggal-lahir" value="{{ siswa.tanggal_lahir }}" required>
+            
+                <label for="jenis-kelamin">Jenis Kelamin:</label>
+                <select id="jenis-kelamin" name="jenis-kelamin" required>
+                    <option value="L" {% if siswa.jenis_kelamin == 'L' %}selected{% endif %}>Laki-laki</option>
+                    <option value="P" {% if siswa.jenis_kelamin == 'P' %}selected{% endif %}>Perempuan</option>
+                </select>
+                
+                <label for="tambah-kelas">Kelas:</label>
+                <select id="tambah-kelas" name="tambah-kelas" required>
+                    <option value="">Pilih</option>
+                    {% for kelas in kelas_list %}
+                        <option value="{{ kelas.id_kelas }}" {% if kelas.id_kelas == siswa.id_kelas %}selected{% endif %}>{{ kelas.nama_kelas }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="alamat">Alamat:</label>
+                <textarea id="alamat" name="alamat" rows="4" required>{{ siswa.alamat }}</textarea>
+            
+                <button type="submit">Simpan</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

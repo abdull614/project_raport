@@ -4,6 +4,7 @@ from app import app
 from app.controller.BerandaController import show_beranda, show_data_siswa
 from app.controller.NilaiController import daftar_nilai  # Mengimpor daftar_nilai dari NilaiController
 from app.controller.NilaiController import input_nilai
+from app.controller.SiswaController import tambah_siswa, edit_siswa, hapus_siswa
 
 @app.route('/')
 def beranda():
@@ -29,3 +30,15 @@ def login():
 def input_nilai_route():
     return input_nilai()
 
+@app.route('/edit/<int:siswa_id>', methods=['GET', 'POST'])
+def edit_siswa_route(siswa_id):
+    return edit_siswa(siswa_id)
+
+
+@app.route('/tambah', methods=['GET', 'POST'])
+def tambah():
+    return tambah_siswa()
+
+@app.route('/hapus/<int:siswa_id>', methods=['POST'])
+def hapus_siswa_route(siswa_id):
+    return hapus_siswa(siswa_id)

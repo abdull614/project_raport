@@ -358,6 +358,7 @@
     justify-content: space-between;
     padding-bottom: 40px;
   }
+  
 
 
 
@@ -368,6 +369,12 @@
   .left2 {
     width: 100%;
   }
+
+  .left3 {
+    width: 200%;
+  
+  }
+
 
   .right {
     display: flex;
@@ -381,6 +388,19 @@
     margin-right: 20px;
     margin-left: 40px;
   }
+
+  .right2 {
+    display: flex;
+    flex-direction: column;
+    width: 40%; /* Memastikan widget mengambil 20% dari lebar flex-container */
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--tetap);
+    padding-left: 0px;
+    padding-top: 10px;
+    margin-left: 500px; /* Jarak kiri untuk lebih estetis */
+}
+
 
   .data-table1 {
     width: 100%;
@@ -797,4 +817,51 @@
     height: 60px;
     resize: none;
   }
+
+  .edit-account-form {
+    max-width: 600px; /* Membatasi lebar form */
+    padding: 30px; /* Memberikan jarak di dalam form */
+    border: 1px solid #ccc; /* Border halus */
+    border-radius: 5px; /* Sudut membulat */
+    background-color: #f9f9f9; /* Warna latar belakang */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+.edit-account-form label {
+    display: block; 
+    margin-bottom: 5px;
+    font-weight: bold; 
+}
+
+.edit-account-form input,
+.edit-account-form select,
+.edit-account-form textarea {
+    width: 100%; /* Mengisi lebar penuh form */
+    padding: 10px; /* Memberikan jarak di dalam input */
+    margin-bottom: 15px; /* Jarak antar elemen form */
+    border: 1px solid #ccc; /* Border halus */
+    border-radius: 4px; /* Sudut membulat */
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar total */
+}
+
+.edit-account-form button {
+    background-color: #4CAF50; /* Warna latar belakang tombol */
+    color: white; /* Warna teks tombol */
+    padding: 10px 15px; /* Jarak di dalam tombol */
+    border: none; /* Menghilangkan border default */
+    border-radius: 5px; /* Sudut membulat */
+    cursor: pointer; /* Mengubah kursor saat hover */
+}
+
+.edit-account-form button:hover {
+    background-color: #45a049; /* Warna tombol saat hover */
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center; /* Memusatkan elemen di dalam flex-container */
+  align-items: center; /* Menyelaraskan elemen di tengah vertikal */
+}
+
+
 }
