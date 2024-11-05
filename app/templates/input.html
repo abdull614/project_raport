@@ -16,7 +16,7 @@
 </div>
 
 <div class="container">
-    <form method="POST" action="{{ url_for('input_nilai_route') }}">
+    <form method="POST" action="{{ url_for('input_nilai') }}"> <!-- Pastikan action sesuai dengan route yang tepat -->
         <div class="left2">
             <div class="data-table1">
                 <table>
@@ -49,7 +49,9 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <button type="submit" class="simpan">Simpan</button>
+                
+                <button type="submit" class="simpan">Simpan</button> <!-- Pindahkan tombol ke dalam form -->
+                
             </div>            
         </div>
     </form>

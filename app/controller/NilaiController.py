@@ -48,8 +48,9 @@ def input_nilai():
                         new_nilai = Nilai(id_siswa=id_siswa, id_mata_pelajaran=mata_pelajaran.id_mata_pelajaran, nilai_akhir=nilai)
                         db.session.add(new_nilai)
         db.session.commit()
-        return redirect(url_for('input_nilai'))
-    
+        # Mengalihkan ke daftar_nilai setelah menyimpan
+        return redirect(url_for('daftar_nilai'))  # Ubah ini
+        
     # Query semua siswa dan mata pelajaran
     siswa_list = Siswa.query.all()
     mata_pelajaran_list = MataPelajaran.query.all()

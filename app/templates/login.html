@@ -15,16 +15,29 @@
 
   <div class="container">
     <main>
+      <!-- Menampilkan pesan flash -->
+       {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-messages">
+            <ul>
+              {% for massage in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+       {% endwith %}
+
       <div class="label">
         <h1>Sign in to<br />Raport Tools</h1>
       </div>
-      <form class="packLogin" id="loginForm">
+      <form class="packLogin" id="loginForm" method="POST" action="{{ url_for('login') }}">
         <div class="button">
-          <input type="email" id="email" placeholder="Email" class="input-field" required aria-label="Email">
+          <input type="email" name="email" placeholder="Email" class="input-field" required aria-label="Email">
           <i class='bx bx-envelope'></i>
         </div>
         <div class="button">
-          <input type="password" id="password" placeholder="Password" class="input-field" required aria-label="Password">
+          <input type="password" name="password" placeholder="Password" class="input-field" required aria-label="Password">
           <i class='bx bxs-lock'></i>
         </div>
         <div class="box">
@@ -35,29 +48,12 @@
           <div class="lupaPw">Lupa Password?</div>
         </div>
 
-        <button type="button" class="button-signin" onclick="login()">
+        <button type="submit" class="button-signin">
           <div class="text-wrapper">Sign in</div>
         </button>
       </form>
       <p>Jika belum mempunyai akun harap hubungi admin.</p>
     </main>
   </div>
-
-  <script>
-    function login() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      // Ganti dengan email dan password admin yang benar
-      const adminEmail = 'admin';
-      const adminPassword = 'admin';
-
-      if (email === adminEmail && password === adminPassword) {
-        window.location.href = '/';
-      } else {
-        alert('Email atau password salah. Silakan coba lagi.');
-      }
-    }
-  </script>
 </body>
 </html>
