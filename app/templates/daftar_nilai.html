@@ -35,10 +35,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set no = 1 %}
+
                     {% for nama, data in siswa_nilai.items() %}
                     <tr>
-                        <td>{{ no }}</td>
+                        <td>{{ loop.index }}</td> <!-- Menggunakan loop.index untuk menampilkan nomor urut -->
                         <td>{{ nama }}</td>
                         <td>{{ data.nilai_mapel.get('Bahasa Indonesia', '-') }}</td>
                         <td>{{ data.nilai_mapel.get('Matematika', '-') }}</td>
@@ -50,11 +50,10 @@
                         <td>{{ data.nilai_mapel.get('Pendidikan Agama Islam', '-') }}</td>
                         <td>{{ '{:.2f}'.format(data.rata_rata) }}</td> <!-- Rata-rata -->
                     </tr>
-                    {% set no = no + 1 %}
                     {% endfor %}
                 </tbody>
-                
-                
+
+
             </table>
             <div class="container3">
                 <select id="kelasDropdown">
@@ -65,22 +64,22 @@
                     <option value="5" selected>Kelas 5</option>
                     <option value="6">Kelas 6</option>
                 </select>
-                
+
                 <div class="input">
                     <a href="{{ url_for('input_nilai') }}" class="btn btn-primary">
                         Input
                     </a>
                 </div>
-            </div>        
+            </div>
         </div>
-    
+
         <script>
             const dropdown = document.getElementById('kelasDropdown');
-            dropdown.addEventListener('change', function() {
+            dropdown.addEventListener('change', function () {
                 console.log('Kelas yang dipilih:', dropdown.value);
             });
         </script>
-        
+
     </div>
 
     <div class="content right">
@@ -88,7 +87,7 @@
             <div class="subwidget2">
                 <i class='bx bx-chart chart'></i>
             </div>
-            <h1 class="header-data">6</h1>
+            <h1 class="header-data">{{ total_guru }}</h1>
             <p class="foot-data2">Total Guru</p>
         </div>
 
@@ -96,7 +95,7 @@
             <div class="subwidget2">
                 <i class='bx bx-dice-3 chart2'></i>
             </div>
-            <h1 class="header-data">4</h1>
+            <h1 class="header-data">{{ total_siswa }}</h1>
             <p class="foot-data2">Total Siswa</p>
         </div>
     </div>

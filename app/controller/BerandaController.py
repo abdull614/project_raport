@@ -22,5 +22,8 @@ def show_data_siswa():
     # Mengambil semua data siswa dari database
     siswa_list = Siswa.query.all()
     
+    total_siswa = Siswa.query.count()
+    total_guru = Guru.query.count()
+    
     # Kirim data siswa ke template
-    return render_template('data_siswa.html', siswa_list=siswa_list)
+    return render_template('data_siswa.html', siswa_list=siswa_list,total_siswa=total_siswa, total_guru=total_guru)

@@ -3,6 +3,7 @@ from app import app, db
 from app.model.nilai import Nilai
 from app.model.siswa import Siswa
 from app.model.mataPelajaran import MataPelajaran
+from app.model.guru import Guru
 
 @app.route('/daftar_nilai')
 def daftar_nilai():
@@ -28,8 +29,11 @@ def daftar_nilai():
         nilai_list = list(data['nilai_mapel'].values())
         if nilai_list:
             data['rata_rata'] = sum(nilai_list) / len(nilai_list)
+            
+    total_siswa = Siswa.query.count()
+    total_guru = Guru.query.count()
 
-    return render_template('daftar_nilai.html', siswa_nilai=siswa_nilai)
+    return render_template('daftar_nilai.html', siswa_nilai=siswa_nilai,total_siswa=total_siswa, total_guru=total_guru)
 
 @app.route('/input', methods=['GET', 'POST'])
 def input_nilai():
@@ -63,7 +67,10 @@ def input_nilai():
     mata_pelajaran_list = MataPelajaran.query.all()
     daftar_nilai = db.session.query(Nilai).all()
     
+    total_siswa = Siswa.query.count()
+    total_guru = Guru.query.count()
+    
     # Struktur data nilai untuk diisi pada form
     nilai_dict = {(n.id_siswa, n.id_mata_pelajaran): n.nilai_akhir for n in daftar_nilai}
     
-    return render_template('input.html', siswa_list=siswa_list, mata_pelajaran_list=mata_pelajaran_list, nilai_dict=nilai_dict)
+    return render_template('input.html', siswa_list=siswa_list, mata_pelajaran_list=mata_pelajaran_list, nilai_dict=nilai_dict,total_siswa=total_siswa, total_guru=total_guru)
