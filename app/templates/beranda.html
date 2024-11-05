@@ -45,8 +45,8 @@
             <div class="subwidget">
                 <i class='bx bxs-user-detail'></i>
             </div>
-            <p class="foot-data">Eno Bening SPd (Admin)</p>
-            <div class="nip">NIP:220101069</div>
+            <p class="foot-data">{{ session['guru_nama'] }} (Admin)</p>
+            <div class="nip">NIP: {{ session['guru_nip'] }}</div>
         </div>
         <div class="kotakgaris">
             <div class="garis"></div>
@@ -55,7 +55,7 @@
             <div class="subwidget2">
                 <i class='bx bx-chart chart'></i>
             </div>
-            <h1 class="header-data">6</h1>
+            <h1 class="header-data">{{ total_guru }}</h1>
             <p class="foot-data2">Total Guru</p>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="subwidget2">
                 <i class='bx bx-dice-3 chart2'></i>
             </div>
-            <h1 class="header-data">4</h1>
+            <h1 class="header-data">{{ total_siswa }}</h1>
             <p class="foot-data2">Total Siswa</p>
         </div>
     </div>

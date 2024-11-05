@@ -7,6 +7,7 @@ from app.controller.NilaiController import input_nilai
 from app.controller.SiswaController import tambah_siswa, edit_siswa, hapus_siswa
 from app.controller.loginController import handle_login
 
+
 @app.route('/')
 def beranda():
     return show_beranda()

@@ -19,8 +19,15 @@ def daftar_nilai():
     siswa_nilai = {}
     for data in daftar_nilai:
         if data.nama_siswa not in siswa_nilai:
-            siswa_nilai[data.nama_siswa] = {}
-        siswa_nilai[data.nama_siswa][data.mata_pelajaran] = data.nilai
+            siswa_nilai[data.nama_siswa] = {'nilai_mapel': {}, 'rata_rata': 0}
+        
+        siswa_nilai[data.nama_siswa]['nilai_mapel'][data.mata_pelajaran] = data.nilai
+    
+    # Menghitung rata-rata untuk masing-masing siswa
+    for nama_siswa, data in siswa_nilai.items():
+        nilai_list = list(data['nilai_mapel'].values())
+        if nilai_list:
+            data['rata_rata'] = sum(nilai_list) / len(nilai_list)
 
     return render_template('daftar_nilai.html', siswa_nilai=siswa_nilai)
 

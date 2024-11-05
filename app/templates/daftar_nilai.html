@@ -36,22 +36,24 @@
                 </thead>
                 <tbody>
                     {% set no = 1 %}
-                    {% for nama, nilai_mapel in siswa_nilai.items() %}
+                    {% for nama, data in siswa_nilai.items() %}
                     <tr>
                         <td>{{ no }}</td>
                         <td>{{ nama }}</td>
-                        <td>{{ nilai_mapel.get('Bahasa Indonesia', '-') }}</td>
-                        <td>{{ nilai_mapel.get('Matematika', '-') }}</td>
-                        <td>{{ nilai_mapel.get('IPA', '-') }}</td>
-                        <td>{{ nilai_mapel.get('IPS', '-') }}</td>
-                        <td>{{ nilai_mapel.get('PKN', '-') }}</td>
-                        <td>{{ nilai_mapel.get('Olahraga', '-') }}</td>
-                        <td>{{ nilai_mapel.get('Bahasa Inggris', '-') }}</td>
-                        <td>{{ nilai_mapel.get('Pendidikan Agama Islam', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('Bahasa Indonesia', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('Matematika', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('IPA', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('IPS', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('PKN', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('Olahraga', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('Bahasa Inggris', '-') }}</td>
+                        <td>{{ data.nilai_mapel.get('Pendidikan Agama Islam', '-') }}</td>
+                        <td>{{ '{:.2f}'.format(data.rata_rata) }}</td> <!-- Rata-rata -->
                     </tr>
                     {% set no = no + 1 %}
                     {% endfor %}
                 </tbody>
+                
                 
             </table>
             <div class="container3">

@@ -37,7 +37,12 @@
                         <td>{{ siswa.alamat }}</td>
                         <td class="action-icons">
                             <a href="{{ url_for('edit_siswa_route', siswa_id=siswa.id_siswa) }}"><i class='bx bxs-message-square-edit edit'></i></a>
-                            <i class='bx bxs-trash-alt hapus'></i>
+                            <form action="{{ url_for('hapus_siswa_route', siswa_id=siswa.id_siswa) }}" method="POST" style="display: inline;">
+                                <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                    <i class='bx bxs-trash-alt hapus'></i>
+                                </button>
+                            </form>
+                            <!-- <i class='bx bxs-trash-alt hapus'></i> -->
                         </td>
                     </tr>
                     {% endfor %}

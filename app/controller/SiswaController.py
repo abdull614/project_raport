@@ -2,6 +2,7 @@ from flask import request, redirect, url_for, flash, render_template
 from app import db
 from app.model.siswa import Siswa
 from app.model.kelas import Kelas
+from app.model.nilai import Nilai
 
 def tambah_siswa():
     if request.method == 'POST':
@@ -61,8 +62,12 @@ def edit_siswa(siswa_id):
     return render_template('edit.html', siswa=siswa, kelas_list=kelas_list)
 
 def hapus_siswa(siswa_id):
+    # Hapus semua entri di tabel "nilai" yang terkait dengan siswa yang akan dihapus
+    Nilai.query.filter_by(id_siswa=siswa_id).delete()
+    db.session.commit()  # Pastikan untuk commit penghapusan ini sebelum lanjut ke penghapusan siswa
+
+    # Lanjutkan penghapusan siswa
     siswa = Siswa.query.get(siswa_id)
     db.session.delete(siswa)
     db.session.commit()
-    # Menambahkan pesan error jika siswa tidak ditemukan
     return redirect(url_for('data_siswa'))
