@@ -47,3 +47,4 @@ def tambah():
 @app.route('/hapus/<int:siswa_id>', methods=['POST'])
 def hapus_siswa_route(siswa_id):
     return hapus_siswa(siswa_id)
+

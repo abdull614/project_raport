@@ -74,3 +74,31 @@ def input_nilai():
     nilai_dict = {(n.id_siswa, n.id_mata_pelajaran): n.nilai_akhir for n in daftar_nilai}
     
     return render_template('input.html', siswa_list=siswa_list, mata_pelajaran_list=mata_pelajaran_list, nilai_dict=nilai_dict,total_siswa=total_siswa, total_guru=total_guru)
+
+@app.route('/preview_nilai')
+def preview_nilai():
+    # Mengambil data siswa dan nilai yang sama seperti di daftar_nilai
+    daftar_nilai = db.session.query(
+        Siswa.nama.label("nama_siswa"),
+        MataPelajaran.nama_pelajaran.label("mata_pelajaran"),
+        Nilai.nilai_akhir.label("nilai")
+    ).join(Nilai, Siswa.id_siswa == Nilai.id_siswa)\
+     .join(MataPelajaran, MataPelajaran.id_mata_pelajaran == Nilai.id_mata_pelajaran)\
+     .all()
+
+    # Mengolah data untuk ditampilkan per siswa
+    siswa_nilai = {}
+    for data in daftar_nilai:
+        if data.nama_siswa not in siswa_nilai:
+            siswa_nilai[data.nama_siswa] = {'nilai_mapel': {}, 'rata_rata': 0}
+        
+        siswa_nilai[data.nama_siswa]['nilai_mapel'][data.mata_pelajaran] = data.nilai
+    
+    # Menghitung rata-rata nilai setiap siswa
+    for nama_siswa, data in siswa_nilai.items():
+        nilai_list = list(data['nilai_mapel'].values())
+        if nilai_list:
+            data['rata_rata'] = sum(nilai_list) / len(nilai_list)
+    
+    return render_template('preview_nilai.html', siswa_nilai=siswa_nilai)
+

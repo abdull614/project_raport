@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/play-list-search.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <div class="left1">
+            <div class="data-table1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>Nama Siswa</th>
+                            <th>BI</th>
+                            <th>MTK</th>
+                            <th>IPA</th>
+                            <th>IPS</th>
+                            <th>PKN</th>
+                            <th>OR</th>
+                            <th>B.Ing</th>
+                            <th>PAI</th>
+                            <th>Rata-Rata</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for nama, data in siswa_nilai.items() %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ nama }}</td>
+                            <td>{{ data.nilai_mapel.get('Bahasa Indonesia', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('Matematika', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('IPA', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('IPS', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('PKN', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('Olahraga', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('Bahasa Inggris', '-') }}</td>
+                            <td>{{ data.nilai_mapel.get('Pendidikan Agama Islam', '-') }}</td>
+                            <td>{{ '{:.2f}'.format(data.rata_rata) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

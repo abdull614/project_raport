@@ -33,15 +33,19 @@
         </select>
       </div>
 
+      <!-- cetak.html -->
       <div class="buttons">
-        <button class="btn preview">Preview</button>
-        <button class="btn cetak">Cetak</button>
+        <button class="btn cetak" onclick="openPrintWindow()">Cetak</button>
       </div>
 
-      <div class="pdf-preview">
-        <div class="pdf-box">Preview PDF</div>
-        <div class="pdf-box">Preview PDF</div>
-      </div>
+      <script>
+        function openPrintWindow() {
+          const printWindow = window.open("{{ url_for('preview_nilai') }}", "_blank");
+          printWindow.addEventListener('load', function () {
+            printWindow.print();
+          });
+        }
+      </script>
     </div>
   </div>
 
