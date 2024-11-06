@@ -99,6 +99,9 @@ def preview_nilai():
         nilai_list = list(data['nilai_mapel'].values())
         if nilai_list:
             data['rata_rata'] = sum(nilai_list) / len(nilai_list)
+            
+    total_siswa = Siswa.query.count()
+    total_guru = Guru.query.count()
     
     return render_template('preview_nilai.html', siswa_nilai=siswa_nilai)
 
